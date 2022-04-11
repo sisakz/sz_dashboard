@@ -5,15 +5,19 @@ type SectionProp = {
     children: React.ReactNode,
     id: string,
     title?: string,
+    backgroundColor?: string,
 }
 
 
 
 const Section: React.FC<SectionProp> = (prop) => {
-    const { children, id, title } = prop
+    const { children, id, title, backgroundColor } = prop
+    console.log("backgroundColor", backgroundColor)
+
+
     return (
         <section id={id}>
-            <SectionWrapper>
+            <SectionWrapper backgroundColor={backgroundColor}>
                 {(title) ? <SectionTitle>{title}</SectionTitle> : null}
                     <SectionContent>
                         {prop.children}
@@ -23,12 +27,11 @@ const Section: React.FC<SectionProp> = (prop) => {
     )
 }
 
-export default Section;
-
-const SectionWrapper = styled.div`
+const SectionWrapper = styled.div.attrs((props:{backgroundColor: string}) => props)`
     display: flex;
     flex-direction: column;
     padding: 1rem 0.5rem;
+    background-color: ${(props) => props.backgroundColor};
 `
 const SectionTitle = styled.h2`
     text-transform: uppercase;
@@ -38,5 +41,9 @@ const SectionContent = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
 `
+
+
+
+export default Section;
+

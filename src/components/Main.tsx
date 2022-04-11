@@ -1,15 +1,15 @@
 import { Section, Container, Card } from "."
-import Content from "./Content"
-import office365 from "../assets/image/office365-http.png"
 import { useStore } from "./Store"
 
 const Main = () => {
-    const { dashboardItems } = useStore()
+    const store = useStore()
+    const {dashboardItems, backgroundcolor}  = useStore()
+    console.log("backgroundcolor", backgroundcolor)
     console.log("dashboardItems", dashboardItems)
     return (
-        <main>
+        <main style={{backgroundColor: backgroundcolor, height: "100vh"}}>
             <Container >
-                <Section id="main">
+                <Section id="main"  backgroundColor={backgroundcolor}>
                     {dashboardItems?.map((item, index) => (
                         <Card key={index} title={item.title} imageUrl={item.image.url} url={item.url}/> 
                     ))}

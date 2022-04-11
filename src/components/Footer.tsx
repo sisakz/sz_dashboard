@@ -1,6 +1,9 @@
 import styled from 'styled-components'
+import { useStore } from "./Store"
 
 const Footer = () => {
+    
+    const {dashboardItems}  = useStore()
     return (
         <footer>
             <FooterWrapper>

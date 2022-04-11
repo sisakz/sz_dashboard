@@ -1,4 +1,5 @@
 import { useQuerySubscription } from "react-datocms"
+import { createContext, useContext } from "react"
 
 export interface IDashboardItem {
     title: string
@@ -9,10 +10,14 @@ export interface IDashboardItem {
 }
 
 export interface IStore {
-    dashboardItems: IDashboardItem[]
+    dashboardItems: IDashboardItem[],
+    backgroundcolor: string
 }
 
-export const useStore = () : IStore => {
+
+export const StoreContext = createContext<IStore>({dashboardItems: [], backgroundcolor: ""});
+
+export const useDato = () : IStore => {
     const token = "66bb6a91ab494f4febcc8cec6da8c0"
     const query = `{
         allDasboarditems {
@@ -22,6 +27,9 @@ export const useStore = () : IStore => {
           }
           url
         }
+        staticelement {
+            backgroundcolor 
+        }
       }`
     const { data, error } = useQuerySubscription({
         query,
@@ -29,8 +37,17 @@ export const useStore = () : IStore => {
         token,
     
     })
-    const store = {dashboardItems: data?.allDasboarditems}
+    console.log("data", data)
+    const store = {
+        dashboardItems: data?.allDasboarditems,
+        backgroundcolor: data?.staticelement?.backgroundcolor
+    }
 
     return store
+}
+
+export const useStore = () : IStore => {
+    const store = useContext(StoreContext)
+return store
 }
 
