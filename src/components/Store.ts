@@ -20,7 +20,7 @@ export const StoreContext = createContext<IStore>({dashboardItems: [], backgroun
 export const useDato = () : IStore => {
     const token = "66bb6a91ab494f4febcc8cec6da8c0"
     const query = `{
-        allDasboarditems {
+        allDasboarditems(first: "50") {
           title
           image {
             url
