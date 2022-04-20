@@ -15,7 +15,6 @@ const Card: React.FC<CardProp> = (prop) => {
     const { children, title, imageUrl, url } = prop
     return (
             <CardWrapper>
-{/*                  */}
                 <CardContent>
                     <a href={url}>
                         <CardTitle>{title}</CardTitle>

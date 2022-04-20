@@ -2,17 +2,20 @@ import React from 'react';
 import { Footer, Header, Main } from './components';
 import {useDato, StoreContext} from './components/Store';
 import styled from 'styled-components';
+import { BrowserRouter, useSearchParams } from "react-router-dom"
 
 function App() {
   const store = useDato();
   return (
     <>
     <StoreContext.Provider value={store}>
-      <Body>
-        <Header />
-        <Main />
-        <Footer />
-      </Body>
+      <BrowserRouter>
+        <Body>
+          <Header />
+          <Main />
+          <Footer />
+        </Body>
+      </BrowserRouter>
     </StoreContext.Provider>
     </>
   );

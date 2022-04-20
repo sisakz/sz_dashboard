@@ -7,15 +7,17 @@ export interface IDashboardItem {
         url: string
     }
     url: string
+    dashboardpage: string
 }
 
 export interface IStore {
     dashboardItems: IDashboardItem[],
+    anydeskItems: IDashboardItem[],
     backgroundcolor: string
 }
 
 
-export const StoreContext = createContext<IStore>({dashboardItems: [], backgroundcolor: ""});
+export const StoreContext = createContext<IStore>({dashboardItems: [], anydeskItems: [], backgroundcolor: ""});
 
 export const useDato = () : IStore => {
     const token = "66bb6a91ab494f4febcc8cec6da8c0"
@@ -26,6 +28,7 @@ export const useDato = () : IStore => {
             url
           }
           url
+          dashboardpage
         }
         staticelement {
             backgroundcolor 
@@ -38,8 +41,9 @@ export const useDato = () : IStore => {
     
     })
     console.log("data", data)
-    const store = {
-        dashboardItems: data?.allDasboarditems,
+    const store: IStore = {
+        dashboardItems: data?.allDasboarditems.filter((item: IDashboardItem) => item.dashboardpage === "main"),
+        anydeskItems: data?.allDasboarditems.filter((item: IDashboardItem) => item.dashboardpage === "anydesk"),
         backgroundcolor: data?.staticelement?.backgroundcolor
     }
 
