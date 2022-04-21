@@ -51,10 +51,12 @@ const CardContent = styled.div`
     background-color: lightgray;
     width: 95%;
     height: 95%;
+    transition: transform .2s;
     & a {
         text-decoration: none;
         color: black;
         &:hover {
+            transform: scale(0.7);
         }
     }
 `
