@@ -2,20 +2,20 @@ import React from 'react';
 import { Footer, Header, Main } from './components';
 import {useDato, StoreContext} from './components/Store';
 import styled from 'styled-components';
-import { BrowserRouter, useSearchParams } from "react-router-dom"
+import { BrowserRouter as HashRouter, useSearchParams } from "react-router-dom"
 
 function App() {
   const store = useDato();
   return (
     <>
     <StoreContext.Provider value={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Body>
           <Header />
           <Main />
           <Footer />
         </Body>
-      </BrowserRouter>
+      </HashRouter>
     </StoreContext.Provider>
     </>
   );
