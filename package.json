@@ -2,6 +2,7 @@
   "name": "sz-dashboard",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://sz-dashboard.fork.hu/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
