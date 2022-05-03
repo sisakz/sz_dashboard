@@ -1,21 +1,26 @@
 import { Section, Container, Card } from "."
 import { useStore } from "./Store"
 import { Routes, Route, useLocation, Navigate } from "react-router-dom"
-import { IDashboardItem } from "./Store"
+import { IDashboardItem, IDashboardPage } from "./Store"
 
 const Main = () => {
     const store = useStore()
-    const {dashboardItems, anydeskItems, backgroundcolor}  = useStore()
+    const {dashboardPages, backgroundcolor}  = useStore()
     console.log("backgroundcolor", backgroundcolor)
-    console.log("dashboardItems", dashboardItems)
+    console.log("dashboardPages", dashboardPages)
+    const routes = dashboardPages?.map((page: IDashboardPage, index: number) => {
+        return <Route key={index} path={"/" + page.name} element={<Dashboard dashboardItems={page.dashboarditems} />} />
+    })
+    console.log("routes", routes)
     return (
         <main style={{backgroundColor: backgroundcolor, height: "100vh"}}>
             <Container >
                 <Section id="main"  backgroundColor={backgroundcolor}>
                     <Routes>
                         <Route path="/" element={<Navigate to="/main" />} />
-                        <Route path="/main" element={<Dashboard dashboardItems={dashboardItems} />} />
-                        <Route path="/anydesk" element={<Dashboard dashboardItems={anydeskItems} />} />
+                        {dashboardPages?.map((page: IDashboardPage, index: number) => {
+                            return <Route key={index} path={"/" + page.name} element={<Dashboard dashboardItems={page.dashboarditems} />} />
+                        })}
                     </Routes>
                 </Section>
             </Container>
@@ -27,6 +32,7 @@ export default Main;
 
 const Dashboard = (props : {dashboardItems: IDashboardItem[]}) => {
     const {dashboardItems}=props
+    console.log("dashboarditems",dashboardItems)
     return (
         <>
             {dashboardItems?.map((item, index) => (
