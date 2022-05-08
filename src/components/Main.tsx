@@ -1,10 +1,9 @@
 import { Section, Container, Card } from "."
 import { useStore } from "./Store"
-import { Routes, Route, useLocation, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { IDashboardItem, IDashboardPage } from "./Store"
 
 const Main = () => {
-    const store = useStore()
     const {dashboardPages, backgroundcolor}  = useStore()
     console.log("backgroundcolor", backgroundcolor)
     console.log("dashboardPages", dashboardPages)

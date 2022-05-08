@@ -1,7 +1,7 @@
 import { Footer, Header, Main } from './components';
 import {useDato, StoreContext} from './components/Store';
 import styled from 'styled-components';
-import { BrowserRouter, useSearchParams } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 
 function App() {
   const store = useDato();

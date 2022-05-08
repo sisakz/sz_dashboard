@@ -11,7 +11,7 @@ type SectionProp = {
 
 
 const Section: React.FC<SectionProp> = (prop) => {
-    const { children, id, title, backgroundColor } = prop
+    const { id, title, backgroundColor } = prop
     console.log("backgroundColor", backgroundColor)
 
 

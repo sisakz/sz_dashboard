@@ -41,7 +41,7 @@ export const useDato = () : IStore => {
         }
       }
       `
-    const { data, error } = useQuerySubscription({
+    const { data } = useQuerySubscription({
         query,
         enabled: true,
         token,
